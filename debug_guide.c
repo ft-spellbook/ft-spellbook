@@ -493,6 +493,8 @@
  * Let's say we have local variable @p i in the current context, who's value
  * is @p 42.
  * 
+ * PART EXPLAINING BASIC USE HAS NOT BEEN WRITTEN YET
+ * 
  * We can also create a UDV called @p ptr which will hold the address of @p i,
  * and then modify @p i by dereferencing @p ptr.
  * <table>
@@ -515,6 +517,7 @@
  * 
  * @subsubsection debugging__expr__multiline Multiline Expressions
  * With relevance to expression local udv
+ * THIS HAS NOT BEEN WRITTEN YET
  * 
  * @subsection debugging__thread The thread Command
  * The thread command is used to operate in the thread of the current process.
@@ -585,15 +588,11 @@
  * 
  * THESE ARE NOTE DELETE LATER  
  * 
- * Please god go through the file and properly set the reference names
- * for sections and subsections,
- * section
- * section_subsection
- * section_subsection_subsubsection
+ * Verify section names are in proper format
  * 
  * Retake jump and run to cursor photos in clean environment
  * 
- * READING BACKTRACE WHAT DOES THE NUMBER AFTER . MEAN IN BREAKPOINT 1.1, 2.1
+ * Reading backtrace what does the number after the . mean? 1.1, 2.1
  * 
  * @section afterword Afterword: LeakSanitizer
  * Complain here
