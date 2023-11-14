@@ -415,19 +415,53 @@
  * In the breakpoints list in the bottom portion of the sidebar, we can see
  * our data breakpoint and the letter "A" for "access".
  * 
- * @subsection debugging__conditional_breakpoints Conditional Breakpoints
- * We can also set breakpoints on specific conditions.
- * 
+ * @subsection debugging__special_breakpoints Special Breakpoints
  * We can add a breakpoint in the loop of our
  * <a href="https://ft-spellbook.github.io/tgrekov-libft/ft__strlen_8c.html">
- * ft_strlen</a>:
+ * ft_strlen</a> to demonstrate the following special breakpoints:
  * @image html conditional_breakpoint_pre-set.png width=300px
+ * 
+ * @subsubsection debugging__special_breakpoints__conditional Conditional Breakpoints
+ * We can set breakpoints that only break when specific conditions are met.
+ * 
  * And then edit it to set the condition <tt>i == 2</tt>:
  * @image html conditional_breakpoint_set.gif width=500px
  * 
  * If we then use the Continue @imageurl{https://raw.githubusercontent.com/microsoft/vscode-icons/main/icons/dark/debug-continue.svg}
  * movement key, @p i will increment until it reaches the value @p 2.
  * @image html conditional_breakpoint_hit.gif width=500px
+ * 
+ * @subsubsection debugging__special_breakpoints__hit_count Hit Count Breakpoints
+ * It is also possible to create breakpoints that only break after they have
+ * been hit a certain number of times.
+ * 
+ * We can set the Hit Count to @p 6:
+ * @image html breakpoint_hit_count_set.gif width=500px
+ * 
+ * In which case the debugger will only break in the second call of
+ * <a href="https://ft-spellbook.github.io/tgrekov-libft/ft__strlen_8c.html">
+ * ft_strlen</a>, where we pass "Test2" as @p str, since the breakpoint will
+ * have been hit 6 times when we get to the second character:
+ * @image html breakpoint_hit_count_run.png width=500px
+ * 
+ * @subsubsection debugging__special_breakpoints__log Log Message Breakpoints
+ * You can also make breakpoints solely for logging information to the Debug
+ * Console.
+ * 
+ * You can format the log message by including @ref debug__expr "expressions"
+ * inside of @p {} braces:
+ * @image html breakpoint_log_set.gif width=500px
+ * 
+ * The resulting output:
+ * @image html breakpoint_log_run.png width=500px
+ * 
+ * @subsection debugging__combining_breakpoint_properties Combining Breakpoint Properties
+ * We can even combine multiple of the above, such as making a breakpoint that
+ * only logs to the Debug Console when the index is an even number:
+ * @image html breakpoint_condition_log_set.gif width=500px
+ * 
+ * The resulting output:
+ * @image html breakpoint_condition_log_run.png width=500px
  * 
  * @subsection debugging__debug_console The Debug Console
  * The Debug Console allows you to interact with the debugger outside of the
@@ -586,13 +620,6 @@
  * 
  * In cases such as these, the warning can simply be ignored, and you can move
  * on.
- * 
- * 
- * THESE ARE NOTE DELETE LATER  
- * 
- * Verify section names are in proper format
- * 
- * Reading backtrace what does the number after the . mean? 1.1, 2.1
  * 
  * @section afterword Afterword
  * You should now be armed with all the tools and knowledge you need to get
