@@ -27,8 +27,8 @@
  * 
  * @subsection flags__why_replace Wait, Why Replace Our Flags?
  * The <tt>-Wall -Wextra -Werror</tt> can prevent certain issues from being
- * traced properly, so they may still be detected, but you will may be missing
- * out on information regarding their origin.
+ * traced properly, so they may still be detected, but you may be missing out
+ * on information regarding their origin.
  * 
  * @subsection flags__g -g
  * The @p -g flag tells the compiler to generate extra information that can be
@@ -47,9 +47,9 @@
  * <a href="https://clang.llvm.org/docs/AddressSanitizer.html">
  * AddressSanitizer</a>, which detects memory accesses outside of allocated
  * areas, use of memory after it has been freed, use of variables outside of
- * their local scope, double and invalid free. To enable the use after return
- * / scope detector we will need to set the @p ASAN_OPTIONS environment
- * variable, but we will get to this part later.
+ * their local scope, double and invalid free. To enable the use of the
+ * after-return/scope detector we will need to set the @p ASAN_OPTIONS
+ * environment variable, but we will get to this part later.
  * 
  * @subsubsection flags__fsan_ubsan -fsanitize=undefined
  * The @p -fsanitize=undefined flag enables the
@@ -595,7 +595,23 @@
  * Reading backtrace what does the number after the . mean? 1.1, 2.1
  * 
  * @section afterword Afterword
- * Something Inspiring :tm:
+ * You should now be armed with all the tools and knowledge you need to get
+ * started tracking down and fixing issues in your programs, no matter how
+ * complex! I hope I have done well to help prepare you for this task, and you
+ * are feeling more confident in your abilities.
+ * 
+ * This article was honestly a fairly large project for me, from learning
+ * everything I could about LLDB and the CodeLLDB extension to the detail and
+ * finishing touches like the examples and gifs, I've had a lot of fun and
+ * seriously enjoyed working on this.
+ * 
+ * I have done as much research as I could to make sure that I provided the
+ * most accurate and readable information I could present.  
+ * That being said, if you have found any issues or inaccuracies, parts that
+ * could use clarification, or otherwise have any questions, please contact me
+ * on Discord at @sova5099 (tgrekov in the HIVE Discord!).
+ * 
+ * Thank you for coming along on this journey with me!
  * 
  * @subsection afterword__resources Resources
  * You can learn more about LLDB by running the @p help command in the debug
@@ -609,5 +625,12 @@
  * official manual</a>.
  * 
  * @subsection afterword__lsan LeakSanitizer
- * Complain here
+ * The version of Clang that Apple provides does not support
+ * <a href="https://clang.llvm.org/docs/LeakSanitizer.html">LeakSanitizer</a>
+ * because it is not considered mature enough on MacOS. You could get around
+ * this by building the LLVM compiler and toolchain from the source, but this
+ * is not generally advisable.
+ * 
+ * Sometime in the near future, there will be an article about Plugging Leaks
+ * (most likely using the @p leaks command)!
  */
