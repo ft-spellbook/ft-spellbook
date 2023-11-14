@@ -28,9 +28,7 @@
  * @subsection flags__why_replace Wait, Why Replace Our Flags?
  * The <tt>-Wall -Wextra -Werror</tt> can prevent certain issues from being
  * traced properly, so they may still be detected, but you will may be missing
- * out on information regarding their origin. I'm actually returning to write
- * this from the practical demonstration section of this article because I've
- * just ran into this exact issue!
+ * out on information regarding their origin.
  * 
  * @subsection flags__g -g
  * The @p -g flag tells the compiler to generate extra information that can be
@@ -157,7 +155,7 @@
  * -# Set the @p program property to <tt>${workspaceFolder}/debug.out</tt>
  * -# To automatically break when the program starts, create a new key called
  * @p stopOnEntry with @p true as the value.
- * -# To set the @p ASAN_OPTIONS envivonment variable we talked about earlier,
+ * -# To set the @p ASAN_OPTIONS environment variable we talked about earlier,
  * create a new key called @p env with an empty object (<tt>{}</tt>) as the
  * value.
  * @code
@@ -181,7 +179,7 @@
  * ],
  * @endcode
  * -# If you want the Debug Console to automatically open when you start
- * debugging, add the key @p internalConsoleOptions with value
+ * debugging, add the key @p internalConsoleOptions with the value
  * @p openOnSessionStart (Thank you jmertane!)
  * @code
  * "internalConsoleOptions": "openOnSessionStart"
@@ -250,10 +248,10 @@
  * @subsection vscode_setup__settings_json settings.json (Optional)
  * A few small things to configure for convenience.
  * 
- * CodeLLDB enters it's
+ * CodeLLDB enters its
  * <a href="https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#disassembly-view">
  * Disassembly View</a> when it is missing sufficient debug information to show
- * the user what is occuring. This can be useful, but it is likely too advanced
+ * the user what is occurring. This can be useful, but it is likely too advanced
  * for us to use yet, so I would recommend disabling it.
  * 
  * -# Select the "File Explorer" tab in the sidebar
@@ -298,7 +296,7 @@
  * -# Start debugging by selecting the Start button at the top of the menu
  * @imageurl{https://raw.githubusercontent.com/microsoft/vscode-icons/main/icons/dark/debug-start.svg}
  * -# If you have @p stopOnEntry enabled, you should immediately see a warning
- * in your Debug Console that the debugger recieved a signal @p SIGSTOP.
+ * in your Debug Console that the debugger received a signal @p SIGSTOP.
  * 
  * You are now ready to explore your program.
  * 
@@ -320,7 +318,7 @@
  * 
  * @subsubsection debugging__breakpoints_moving Why Are My Breakpoints Moving?
  * If you set a breakpoint on a line that the debugger cannot break on, such
- * as an empty line or a variable declaration, they will be moved to the
+ * as an empty line or a variable declaration, it will be moved to the
  * nearest valid location.
  * 
  * @image html breakpoint_moving.gif width=300px
@@ -341,8 +339,8 @@
  * @image html breakpoint_continue.gif width=500px
  * 
  * Step Over @imageurl{https://raw.githubusercontent.com/microsoft/vscode-icons/main/icons/dark/debug-step-over.svg}
- * <br>Causes the debugger to step over the current line. If there is a function call,
- * it calls the function and moves on.  
+ * <br>Steps over the current line. If there is a function call, it calls the
+ * function and moves on.  
  * @image html step_over.gif width=500px
  * 
  * Step Into @imageurl{https://raw.githubusercontent.com/microsoft/vscode-icons/main/icons/dark/debug-step-into.svg}
@@ -363,17 +361,17 @@
  * @subsubsection debugging__navigation_jump Jump to Cursor
  * Right-clicking on a line in your code, you should have the option at the
  * bottom of the context menu to "jump" to the cursor position. 
- * @image html jump_to_cursor.png width=500px
+ * @image html cursor_jump_to.png width=500px
  * 
  * Jumping will skip straight to the cursor, ignoring any code between the
- * current position and the destination. You can jump both forwards and
- * backwards.  
+ * current position and the destination. You can jump both forward and
+ * backward.  
  * Jumping may require you to pause and unpause in the navigation bar.
  * 
  * @subsubsection debugging__navigation_run Run to Cursor
  * Right-clicking on a line in your code, you should have the option at the
  * bottom of the context menu to "run" until the cursor position.
- * @image html run_to_cursor.png width=500px
+ * @image html cursor_run_to.png width=500px
  * 
  * This will execute the code normally and break when the cursor position is
  * reached.
@@ -434,7 +432,7 @@
  * @subsection debugging__debug_console The Debug Console
  * The Debug Console allows you to interact with the debugger outside of the
  * graphical menus provided by VSCode, such as issuing commands, as well as
- * viewing the debugger's feedback to your actions and various errors and
+ * viewing the debugger's feedback on your actions and various errors and
  * warnings raised by your sanitizers.
  * 
  * @subsection debugging__expr The expression Command
@@ -443,17 +441,17 @@
  * Expressions support most C syntax with the notable exception of control
  * structures like if, else, while, etc.  
  * The return value of your expression will be stored in an incrementally-named
- * @ref debugging__expr__user_defined_variables "User Defined Variable", so the
+ * @ref debugging__expr__user-defined_variables "User-Defined Variable", so the
  * first time you run the command, the result will be stored in a variable
  * named @p $0, and the next expression's return value will be stored in @p s1,
  * and so on.
  * 
  * @subsubsection debugging__expr__evaluating_expressions Evaluating Expressions
- * Let's say we have local variable @p i in the current context, who's value
- * is @p 42.  
+ * Let's say we have the local variable @p i in the current context, whose
+ * value is @p 42.  
  * The command <tt>expr i</tt>
  * Would print the value of @p i and assign it to an automatically created
- * @ref debugging__expr__user_defined_variables "User Defined Variable":
+ * @ref debugging__expr__user-defined_variables "User-Defined Variable":
  * Command         | Output
  * ----------------| -------------------------
  * <tt>expr i</tt> | <tt>(size_t) $0 = 42</tt>
@@ -479,9 +477,9 @@
  * <tt>print i</tt>  | <tt>(size_t) 44</tt>
  * <tt>print $1</tt> | <tt>(size_t) 44</tt>
  * 
- * @subsubsection debugging__expr__user_defined_variables User Defined Variables
+ * @subsubsection debugging__expr__user-defined_variables User-Defined Variables
  * As we saw previously, using the @p expression command stores the return
- * value of the evaluated expression in a User Defined Variable, but we can
+ * value of the evaluated expression in a User-Defined Variable, and we can
  * also create and manipulate these variables ourselves.
  * 
  * We declare UDVs in the debugger the same way we would declare variables
@@ -490,13 +488,9 @@
  * If a UDV's name is prefixed with a @p $, it persists across all expressions,
  * while one without the @p $ only exists within the current expression.
  * 
- * Let's say we have local variable @p i in the current context, who's value
- * is @p 42.
- * 
- * PART EXPLAINING BASIC USE HAS NOT BEEN WRITTEN YET
- * 
- * We can also create a UDV called @p ptr which will hold the address of @p i,
- * and then modify @p i by dereferencing @p ptr.
+ * To demonstrate further how UDVs are like C variables, we can create one
+ * called @p $ptr which will hold the address of @p i, and then modify @p i
+ * by dereferencing @p $ptr.
  * <table>
  *   <tr>
  *     <th>Command</th>
@@ -515,15 +509,11 @@
  * <tt>print i</tt>         | <tt>(size_t) 24</tt>
  * <tt>print $4</tt>        | <tt>(size_t) 44</tt>
  * 
- * @subsubsection debugging__expr__multiline Multiline Expressions
- * With relevance to expression local udv
- * THIS HAS NOT BEEN WRITTEN YET
- * 
  * @subsection debugging__thread The thread Command
  * The thread command is used to operate in the thread of the current process.
  * For example; if you use the Continue @imageurl{https://raw.githubusercontent.com/microsoft/vscode-icons/main/icons/dark/debug-continue.svg}
- * button, you execute <tt>thread continue</tt>.  
- * We have already gone over for the graphical versions of the commands
+ * movement button, you execute <tt>thread continue</tt>.  
+ * We have already gone over the graphical versions of the commands
  * <tt>thread continue</tt>, <tt>thread step-over</tt>,
  * <tt>thread step-into</tt>, <tt>thread step-out</tt>,
  * <tt>thread until</tt>, and <tt>thread jump</tt>.
@@ -576,24 +566,48 @@
  * @image html ubsan_overflow.gif width=500px
  * 
  * @subsubsection debugging__ubsan_in_action__intentional_behavior Intentional Behavior
- * The @ref flags__fsan_ubsan "UndefinedBehaviorSanitizer" can also break on
- * intentional behavior.
+ * Tripping an @ref flags__fsan_ubsan "UndefinedBehaviorSanitizer" check is not
+ * always an indication that something is wrong, however, as it can also break
+ * on intentional behavior.
  * 
  * My <a href="https://ft-spellbook.github.io/tgrekov-libft/ft__bzero_8c.html">
- * ft_bzero</a> runs in reverse by decrementing @p n:
+ * ft_bzero</a> runs in reverse by decrementing @p n until it reaches zero:
+ * @code
+ * void    ft_bzero(void *s, size_t n)
+ * {
+ *   while (n--)
+ *     ((unsigned char *) s)[n] = 0;
+ * }
+ * @endcode
  * 
- * This will trip the @p unsigned-integer-overflow ???
- * INSERT GIF CHECK THIS
+ * This will underflow on the very final condition test, tripping the
+ * @p unsigned-integer-overflow check, causing the debugger to break and
+ * output <tt>Stop reason: Unsigned integer overflow</tt> in the Debug Console.
+ * 
+ * In cases such as these, the warning can simply be ignored, and you can move
+ * on.
  * 
  * 
  * THESE ARE NOTE DELETE LATER  
  * 
  * Verify section names are in proper format
  * 
- * Retake jump and run to cursor photos in clean environment
- * 
  * Reading backtrace what does the number after the . mean? 1.1, 2.1
  * 
- * @section afterword Afterword: LeakSanitizer
+ * @section afterword Afterword
+ * Something Inspiring :tm:
+ * 
+ * @subsection afterword__resources Resources
+ * You can learn more about LLDB by running the @p help command in the debug
+ * console, at the <a href="https://lldb.llvm.org/use/tutorial.html">
+ * official tutorial</a>, and at the
+ * <a href="https://lldb.llvm.org/use/map.html">
+ * official GDB to LLDB command map</a>.
+ * 
+ * You can learn more about CodeLLDB in the
+ * <a href="https://github.com/vadimcn/codelldb/blob/master/MANUAL.md">
+ * official manual</a>.
+ * 
+ * @subsection afterword__lsan LeakSanitizer
  * Complain here
  */
