@@ -417,6 +417,20 @@
  * In the breakpoints list in the bottom portion of the sidebar, we can see
  * our data breakpoint and the letter "A" for "access".
  * 
+ * @subsection debugging__conditional_breakpoints Conditional Breakpoints
+ * We can also set breakpoints on specific conditions.
+ * 
+ * We can add a breakpoint in the loop of our
+ * <a href="https://ft-spellbook.github.io/tgrekov-libft/ft__strlen_8c.html">
+ * ft_strlen</a>:
+ * @image html conditional_breakpoint_pre-set.png width=300px
+ * And then edit it to set the condition <tt>i == 2</tt>:
+ * @image html conditional_breakpoint_set.gif width=500px
+ * 
+ * If we then use the Continue @imageurl{https://raw.githubusercontent.com/microsoft/vscode-icons/main/icons/dark/debug-continue.svg}
+ * movement key, @p i will increment until it reaches the value @p 2.
+ * @image html conditional_breakpoint_hit.gif width=500px
+ * 
  * @subsection debugging__debug_console The Debug Console
  * The Debug Console allows you to interact with the debugger outside of the
  * graphical menus provided by VSCode, such as issuing commands, as well as
@@ -512,7 +526,7 @@
  * <tt>thread until</tt>, and <tt>thread jump</tt>.
  * 
  * @subsubsection debugging__thread__backtrace thread backtrace
- * 
+ * The <tt>thread backtrace</tt> command shows the current call stack.  
  * If we run this command while at the breakpoint we created earlier in the
  * @ref debugging__data_breakpoints section, we can expect
  * a result similar to the following:
@@ -523,14 +537,50 @@
  *     frame #2: 0x00007fff78deb3d5 libdyld.dylib`start + 1
  *     frame #3: 0x00007fff78deb3d5 libdyld.dylib`start + 1
  * @endcode
+ * From this backtrace, we can interpret the following:
+ * - We are currently inside of the
+ * <a href="https://ft-spellbook.github.io/tgrekov-libft/ft__strlen_8c.html">
+ * ft_strlen</a> function, at character 4 of line 32 in ft_strlen.c
+ * - The function was passed the parameter @p str, which contains the string
+ * "Test". 
+ * - We entered the function from the main function, at character 8 of line 42
+ * in ft_strlen.c
+ * - The thread is currently stopped because of breakpoint #1
+ * 
+ * We can also see some of this information in the Call Stack section in the
+ * sidebar:
+ * @image html call_stack.png width=290px
  * 
  * @subsubsection debugging__thread__return thread return
- * 
- * @subsection debugging__ubsan_in_action UndefinedBehaviorSanitizer In Action
- * 
+ * The <tt>thread return</tt> command prematurely returns from a context,
+ * with an optional return value.
+ * If we run this command with the value of @p SIZE_MAX
  * @code
  * 18446744073709551615
  * @endcode
+ * while at the breakpoint we created earlier in the
+ * @ref debugging__data_breakpoints section,
+ * our <a href="https://ft-spellbook.github.io/tgrekov-libft/ft__strlen_8c.html">
+ * ft_strlen</a> will return the largest value that @p size_t can store:
+ * @image html thread_return.gif width=500px
+ * 
+ * @subsection debugging__ubsan_in_action UndefinedBehaviorSanitizer In Action
+ * If we Step Over @imageurl{https://raw.githubusercontent.com/microsoft/vscode-icons/main/icons/dark/debug-step-over.svg}
+ * to the next line, which increments @p len, we will overflow it.  
+ * Since we enabled the @p unsigned-integer-overflow check in the
+ * @ref flags__fsan_ubsan "UndefinedBehaviorSanitizer", we will break and see
+ * the reason in our Debug Console:
+ * @image html ubsan_overflow.gif width=500px
+ * 
+ * @subsubsection debugging__ubsan_in_action__intentional_behavior Intentional Behavior
+ * The @ref flags__fsan_ubsan "UndefinedBehaviorSanitizer" can also break on
+ * intentional behavior.
+ * 
+ * My <a href="https://ft-spellbook.github.io/tgrekov-libft/ft__bzero_8c.html">
+ * ft_bzero</a> runs in reverse by decrementing @p n:
+ * 
+ * This will trip the @p unsigned-integer-overflow ???
+ * INSERT GIF CHECK THIS
  * 
  * 
  * THESE ARE NOTE DELETE LATER  
@@ -541,11 +591,9 @@
  * section_subsection
  * section_subsection_subsubsection
  * 
- * Demonstrate ubsan underflow strlen
- * Demonstrate ubsan flagging normal shit
- * 
- * Retake breakpoint moving gif to fix colors
  * Retake jump and run to cursor photos in clean environment
+ * 
+ * READING BACKTRACE WHAT DOES THE NUMBER AFTER . MEAN IN BREAKPOINT 1.1, 2.1
  * 
  * @section afterword Afterword: LeakSanitizer
  * Complain here
