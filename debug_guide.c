@@ -455,7 +455,7 @@
  * The resulting output:
  * @image html breakpoint_log_run.png width=500px
  * 
- * @subsection debugging__combining_breakpoint_properties Combining Breakpoint Properties
+ * @subsubsection debugging__special_breakpoints__combining_breakpoint_properties Combining Breakpoint Properties
  * We can even combine multiple of the above, such as making a breakpoint that
  * only logs to the Debug Console when the index is an even number:
  * @image html breakpoint_condition_log_set.gif width=500px
