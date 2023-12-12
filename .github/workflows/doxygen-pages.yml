@@ -14,3 +14,4 @@ jobs:
     with:
       name: "ft-spellbook"
       brief: "Hivers V Documentation & Resource Sharing"
+      extract_static: NO
